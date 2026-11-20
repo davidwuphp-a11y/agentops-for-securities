@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "agentops-for-securities-github-ready-v5.zip"
+      - ".github/workflows/expand-source-archive.yml"
 
 permissions:
   contents: write
@@ -111,7 +112,7 @@ jobs:
 
       - name: Copy and commit source tree
         run: |
-          rsync -a --exclude='agentops-for-securities-github-ready-v5.zip' "$RUNNER_TEMP/agentops-source/" ./
+          rsync -a --exclude='.github/***' --exclude='agentops-for-securities-github-ready-v5.zip' "$RUNNER_TEMP/agentops-source/" ./
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
