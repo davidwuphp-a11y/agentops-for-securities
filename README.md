@@ -76,3 +76,8 @@ A production deployment would still require, at minimum, enterprise identity and
 ## License
 
 Licensed under the [Apache License 2.0](LICENSE).
+
+
+## Continuous integration
+
+GitHub Actions validates the source archive against its SHA-256 manifest, runs compilation, pytest, unittest discovery, and the deterministic demo on Python 3.10–3.13, and expands the verified source tree into browsable repository files. See the [workflow runs](https://github.com/davidwuphp-a11y/agentops-for-securities/actions).
