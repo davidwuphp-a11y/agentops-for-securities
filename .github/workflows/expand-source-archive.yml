@@ -1,0 +1,69 @@
+name: Expand verified source archive
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "agentops-for-securities-github-ready-v5.zip"
+
+permissions:
+  contents: write
+
+jobs:
+  expand:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Validate and extract source archive
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          import os
+
+          archive = Path("agentops-for-securities-github-ready-v5.zip")
+          if not archive.is_file():
+              raise SystemExit("Expected source archive is missing")
+
+          destination = Path(os.environ["RUNNER_TEMP"]) / "agentops-source"
+          destination.mkdir(parents=True, exist_ok=True)
+
+          with ZipFile(archive) as zf:
+              bad = zf.testzip()
+              if bad is not None:
+                  raise SystemExit(f"Corrupt ZIP member: {bad}")
+              for item in zf.infolist():
+                  target = (destination / item.filename).resolve()
+                  if not target.is_relative_to(destination.resolve()):
+                      raise SystemExit(f"Unsafe archive path: {item.filename}")
+              zf.extractall(destination)
+
+          manifest = destination / "MANIFEST.json"
+          if not manifest.is_file():
+              raise SystemExit("MANIFEST.json missing from source archive")
+          print(f"Validated and extracted {len(list(destination.rglob('*')))} entries")
+          PY
+
+      - name: Copy source tree into repository
+        shell: bash
+        run: |
+          rsync -a --exclude='agentops-for-securities-github-ready-v5.zip' "$RUNNER_TEMP/agentops-source/" ./
+
+      - name: Commit expanded source tree
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No source changes to commit."
+            exit 0
+          fi
+          git commit -m "Expand verified AgentOps v0.1.0 research source archive"
+          git push origin HEAD:main
