@@ -31,6 +31,6 @@ Each artifact is checksummed in the evidence manifest. Earlier versions are not 
 - The benchmark is synthetic and rule-generated. Its test split is included and is not blind; no external adjudication, inter-rater study, contamination study, or real-world validity claim is made.
 - No regulatory certification, legal opinion, penetration test, production deployment, or independent security audit is claimed.
 
-## User authorization boundary
+## Publication status and authorization boundary
 
-No GitHub repository was created and no code was pushed. Publishing this project to a public repository requires the user's explicit authorization.
+The user authorized publication of this research prototype. The project source, tests, benchmark materials, documentation, and CI workflow are now present in the public repository `davidwuphp-a11y/agentops-for-securities`. This repository publication does not imply production certification, independent security review, or validation on real customer workflows.
