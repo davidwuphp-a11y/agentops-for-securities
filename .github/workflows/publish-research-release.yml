@@ -1,0 +1,39 @@
+name: Publish research release
+
+on:
+  workflow_run:
+    workflows: ["Expand verified source archive"]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out validated main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Verify release assets are present
+        run: |
+          test -s agentops-for-securities-github-ready-v5.zip
+          test -s agentops-for-securities-evidence-bundle-v5.zip
+          test -s RELEASE_NOTES_v0.1.0-research.md
+
+      - name: Create research prototype release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v0.1.0-research
+          name: AgentOps for Securities v0.1.0 — Research Prototype
+          body_path: RELEASE_NOTES_v0.1.0-research.md
+          prerelease: true
+          draft: false
+          fail_on_unmatched_files: true
+          files: |
+            agentops-for-securities-github-ready-v5.zip
+            agentops-for-securities-evidence-bundle-v5.zip
