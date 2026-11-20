@@ -7,41 +7,31 @@
 - Visibility: Public
 - Default branch: `main`
 - Description: Evidence-grounded governance and reliability controls for AI agents in high-risk financial workflows.
-- License: Apache-2.0 (LICENSE is present in the repository)
+- License: Apache-2.0 (LICENSE is included)
 
 ## Repository topics
 
 Applied and visibly verified: `agentops`, `ai-governance`, `llm-agents`, `financial-services`, `securities`, `kyc`, `compliance-automation`, `auditability`, `risk-management`, `synthetic-benchmark`.
 
-## Release inputs
+## Proposed research release
 
-Upload both files to the repository root in one commit to `main`:
+- Tag: `v0.1.0-research`
+- Title: `AgentOps for Securities v0.1.0 — Research Prototype`
+- Notes: `RELEASE_NOTES_v0.1.0-research.md`
+- Attachments: source archive and evidence bundle (not yet attached to a GitHub Release).
 
-- Source: `agentops-for-securities-github-ready-v5.zip` — 58,964 bytes; SHA-256 `2c92cb06ab5a65f0f37ef8598486aac263e7dc4da4974190bb6833819c1cbd86`.
-- Evidence: `agentops-for-securities-evidence-bundle-v5.zip` — 1,658,882 bytes; SHA-256 `545e50512c7979e63df2fae5d20306f5725bbfb49e71411b9723610b8aefdbef`.
-
-## Automated completion after upload
-
-1. `.github/workflows/expand-source-archive.yml` validates the source ZIP and its 36-file SHA-256 manifest.
-2. The workflow runs compile, pytest, unittest, and demo checks on Python 3.10, 3.11, 3.12, and 3.13.
-3. Only after all four test jobs pass, it expands and commits the source tree to `main`.
-4. `.github/workflows/publish-research-release.yml` then creates the prerelease `v0.1.0-research` and attaches both ZIP files.
-
-## Publication state
+## Publication state at archive build
 
 - [x] Public repository created.
-- [x] Apache-2.0 license selected and present.
+- [x] Apache-2.0 license selected and present in repository.
 - [x] Project README committed.
-- [x] Release notes committed.
 - [x] Repository topics applied.
-- [x] Four-version test-and-expand workflow committed.
-- [x] Automated prerelease workflow committed.
-- [ ] Source and evidence ZIPs uploaded to the repository.
-- [ ] Four-version hosted test matrix passed.
+- [ ] Full source archive uploaded to repository.
 - [ ] Extracted source tree committed as browsable files.
-- [ ] Research prerelease and both assets published.
+- [ ] GitHub Actions CI run verified.
+- [ ] Research release and source/evidence assets published.
 
-The only owner action required is to upload the two v5 ZIP files through GitHub's **Add file → Upload files** page and commit them directly to `main`. The remaining validation, source expansion, and prerelease publication are configured to run automatically. Do not mark those steps complete until the workflow runs and release are visible on GitHub.
+The GitHub web upload route cannot select a local file through the browser sandbox. The archive must be selected through GitHub's native file picker by the repository owner. Do not mark the archive or release as published until the commit and release asset are visible on GitHub.
 
 ## Validation boundary
 

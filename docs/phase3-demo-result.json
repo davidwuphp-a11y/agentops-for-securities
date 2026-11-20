@@ -1,0 +1,15 @@
+{
+  "case": {
+    "id": "CASE-DEMO-0001",
+    "status": "APPROVED",
+    "version": 4,
+    "created": 1794986672.1705418
+  },
+  "policy_gate": {
+    "allowed": true,
+    "reason": "POLICY_CHECKS_PASSED"
+  },
+  "audit_chain_valid": true,
+  "replay": [],
+  "events": 9
+}

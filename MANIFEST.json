@@ -1,0 +1,151 @@
+{
+  "files": {
+    ".github/workflows/tests.yml": {
+      "sha256": "903d6ee599a8cc1491999f7dd2f2e612020403b1c54dc64a8214cb706669c4b0",
+      "size_bytes": 756
+    },
+    ".gitignore": {
+      "sha256": "a8a1ff8518d7bd98797a942c162a91257c82d1ddf421da87b7c655e0a5611d79",
+      "size_bytes": 83
+    },
+    "CHANGELOG.md": {
+      "sha256": "2becceac874412d17e323871a62fe63429414e8bb3632c3333575cd2d21387b6",
+      "size_bytes": 2126
+    },
+    "CONTRIBUTING.md": {
+      "sha256": "9504298d7cf3fea2b569112f363804c773936d96da25a0f1128a7d4cf66bb386",
+      "size_bytes": 1085
+    },
+    "LICENSE": {
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "size_bytes": 11358
+    },
+    "README.md": {
+      "sha256": "64b2cc3ae39c19bd90e1726a14798fbee17b27a42b063ed48b7ae6781fdab6de",
+      "size_bytes": 4727
+    },
+    "RELEASE_NOTES_v0.1.0-research.md": {
+      "sha256": "88a51df9eaafb6d33bf8f357aba75e6f4c2b02ef6673907b9997d901bbc98cd7",
+      "size_bytes": 1212
+    },
+    "SECURITY.md": {
+      "sha256": "c22c256ead338d3217ead7b6985d852070f6e5824cea39f8e315471d23ddf080",
+      "size_bytes": 1063
+    },
+    "agentops/core.py": {
+      "sha256": "5349f0a0f5e550f969bc9f5fa712a7e508ff95fc5a1570c87de148f2c7b54477",
+      "size_bytes": 13087
+    },
+    "agentops/demo.py": {
+      "sha256": "836d72431e3e9a3deaccb267b8999a9bb3feeb40d34d920c038430d9770dc467",
+      "size_bytes": 1238
+    },
+    "agentops/phase5.py": {
+      "sha256": "7b377d744158db8b092892761b3c41bc7d31652cffa181352ed0afe8fac06e47",
+      "size_bytes": 12175
+    },
+    "agentops/reliability.py": {
+      "sha256": "a1e3f7bbf5047b1849a6a3d8dfe44605fa394e5aa9cda172ffc58c6c2953ff0a",
+      "size_bytes": 15001
+    },
+    "agentops/runtime.py": {
+      "sha256": "4429a55c87ad3eb168c39bd5923ef72cbdf85ad0c68535c7208a58ce4f3e0192",
+      "size_bytes": 7922
+    },
+    "benchmarks/README.md": {
+      "sha256": "8ebcb3d2156dc3c5a9e1135b80074ec96261b4c843c026376b36ba3a2b72b6a1",
+      "size_bytes": 1146
+    },
+    "benchmarks/data/agentops_synthetic_benchmark_v1.json": {
+      "sha256": "3534065b19b6d10b91fa1097c7944178714cbc6eb1ad0a9b6c4318c516577075",
+      "size_bytes": 183981
+    },
+    "benchmarks/evaluate.py": {
+      "sha256": "0345cb7f7c66149fb10504271ce2371ab61bc160d19ec6d034726638a675750c",
+      "size_bytes": 3097
+    },
+    "benchmarks/generate_benchmark.py": {
+      "sha256": "2d4b52ae27b0ffb6d88fc80a970eb1ad863c3eea8d5cddb3ecc566f97e670c74",
+      "size_bytes": 2921
+    },
+    "docs/ARCHITECTURE.md": {
+      "sha256": "0891428985c75992aa286b31ea0f6f69f6c0380428b5cc750d312c44137acbcd",
+      "size_bytes": 1469
+    },
+    "docs/GITHUB_PUBLICATION.md": {
+      "sha256": "802b1579f4c34313fe2719023cbc572b94d7e029490a4fa8581df0131b895f6a",
+      "size_bytes": 1797
+    },
+    "docs/PHASE3_REPORT.md": {
+      "sha256": "ea9f791e02840be83492f430f0c78cd1587e442467c575cca9d798fdc645e951",
+      "size_bytes": 1985
+    },
+    "docs/PHASE4_AUDIT_REPORT.md": {
+      "sha256": "121ab4132833b8ada580a7db5b58c043dea3bb94223ba4cf8da920b805444648",
+      "size_bytes": 3715
+    },
+    "docs/PHASE4_REPORT.md": {
+      "sha256": "6e27ac0528f06baef7ac96695770bdb83261c7d1019c2f6785bbadca62e1d01e",
+      "size_bytes": 1290
+    },
+    "docs/PHASE5_FOUNDATIONS_REPORT.md": {
+      "sha256": "5d4e8e8fdc6c5a52ce9e8819a1908ef4217be1d912dcf75b2dccffd77a9fb068",
+      "size_bytes": 2190
+    },
+    "docs/PHASE5_INTEGRATION_REPORT.md": {
+      "sha256": "cc637ef7d72bac710bc29323daca92d9858da0b273cfa1ad39de051e553aef6c",
+      "size_bytes": 3585
+    },
+    "docs/PHASE6_BENCHMARK_REPORT.md": {
+      "sha256": "e20648a5add296b9a4fca4e54fe0e04862f4e281100380e2fce07b172d0f2cb5",
+      "size_bytes": 1506
+    },
+    "docs/PHASE7_SECURITY_REPORT.md": {
+      "sha256": "ead587434aaeab159f0fc435e8561ea4f037b37f211efdd1684b7c46f0e9b666",
+      "size_bytes": 2386
+    },
+    "docs/PROVENANCE_AND_LIMITATIONS.md": {
+      "sha256": "c3cb2d874939482062869d5284815ded57c64283106b70869a584ab5d5e7da24",
+      "size_bytes": 2741
+    },
+    "docs/TEST_REPORT.md": {
+      "sha256": "8d424843f4714f5874467536245a935126ee82415b2f8360d32a6cdcc6daa1f7",
+      "size_bytes": 689
+    },
+    "docs/demo-result.json": {
+      "sha256": "5a2c96cdf2ccdd05628566ca281cd4a74afb3e4bd5a0d32cdfd3d475d325e96a",
+      "size_bytes": 267
+    },
+    "docs/phase3-demo-result.json": {
+      "sha256": "1e10b860d0b75addaf03a0d150ccd75ced0a5b329e8399392aa0fb23caccb43c",
+      "size_bytes": 268
+    },
+    "requirements-dev.txt": {
+      "sha256": "26db60f3749b2d582ef13e54530725d1038086c5b72953678670871c2b85e15a",
+      "size_bytes": 14
+    },
+    "tests/test_benchmark.py": {
+      "sha256": "f76d64d521fe48e03de7bd621fab67b8cf5def26e233628793323761e020176f",
+      "size_bytes": 1849
+    },
+    "tests/test_core.py": {
+      "sha256": "77a85840a39d11944da602f81cbc2ea1704a3ddffb888d374f1488f21a2d41fe",
+      "size_bytes": 5364
+    },
+    "tests/test_phase5.py": {
+      "sha256": "d1f90a3104c232dfec2f3be5d3f8097637780aa6dde4b32fb77f755049ccd7c3",
+      "size_bytes": 12245
+    },
+    "tests/test_reliability.py": {
+      "sha256": "347422c0645391563973370063d37b4326d179859ac2c70060ccf60cf0ac46c2",
+      "size_bytes": 3613
+    },
+    "tests/test_runtime.py": {
+      "sha256": "0b6116c11eb2e6fc559add22f040d8ce19f0648344c32624adffca680fc9a6fc",
+      "size_bytes": 6462
+    }
+  },
+  "project": "AgentOps for Securities",
+  "status": "research and engineering prototype",
+  "version": "github-ready-v5"
+}

@@ -15,11 +15,9 @@ Research and engineering prototype release.
 
 ## Validation snapshot
 
-- 64 tests passed in pytest and unittest discovery, plus four parameterized subtests.
+- 64 tests passed in pytest and unittest discovery.
 - Clean-room extraction and re-test passed.
-- Compilation and demo execution passed.
 - Manifest SHA-256 verification passed.
-- Secret-pattern scan found no matches for the checked credential formats.
 
 ## Limitations
 
