@@ -10,14 +10,24 @@ permissions:
   contents: write
 
 jobs:
-  expand:
+  test:
+    name: Test Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
         with:
           ref: main
-          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
 
       - name: Validate and extract source archive
         shell: bash
@@ -25,15 +35,13 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           from zipfile import ZipFile
-          import os
+          import hashlib, json, os
 
           archive = Path("agentops-for-securities-github-ready-v5.zip")
           if not archive.is_file():
               raise SystemExit("Expected source archive is missing")
-
           destination = Path(os.environ["RUNNER_TEMP"]) / "agentops-source"
           destination.mkdir(parents=True, exist_ok=True)
-
           with ZipFile(archive) as zf:
               bad = zf.testzip()
               if bad is not None:
@@ -43,21 +51,67 @@ jobs:
                   if not target.is_relative_to(destination.resolve()):
                       raise SystemExit(f"Unsafe archive path: {item.filename}")
               zf.extractall(destination)
-
-          manifest = destination / "MANIFEST.json"
-          if not manifest.is_file():
-              raise SystemExit("MANIFEST.json missing from source archive")
-          print(f"Validated and extracted {len(list(destination.rglob('*')))} entries")
+          manifest = json.loads((destination / "MANIFEST.json").read_text())
+          for name, meta in manifest["files"].items():
+              data = (destination / name).read_bytes()
+              if len(data) != meta["size_bytes"] or hashlib.sha256(data).hexdigest() != meta["sha256"]:
+                  raise SystemExit(f"Manifest mismatch: {name}")
+          print(f"Archive and {len(manifest['files'])} manifest entries verified")
           PY
 
-      - name: Copy source tree into repository
-        shell: bash
+      - name: Install test dependencies
+        working-directory: ${{ runner.temp }}/agentops-source
+        run: python -m pip install -r requirements-dev.txt
+
+      - name: Compile source
+        working-directory: ${{ runner.temp }}/agentops-source
+        run: python -m compileall -q agentops benchmarks tests
+
+      - name: Run pytest
+        working-directory: ${{ runner.temp }}/agentops-source
+        run: python -m pytest -q
+
+      - name: Run unittest discovery
+        working-directory: ${{ runner.temp }}/agentops-source
+        run: python -m unittest discover -s tests -q
+
+      - name: Run deterministic demo
+        working-directory: ${{ runner.temp }}/agentops-source
+        run: python -m agentops.demo
+
+  expand:
+    name: Commit browsable source tree
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Extract source archive
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          import os
+          archive = Path("agentops-for-securities-github-ready-v5.zip")
+          destination = Path(os.environ["RUNNER_TEMP"]) / "agentops-source"
+          destination.mkdir(parents=True, exist_ok=True)
+          with ZipFile(archive) as zf:
+              if zf.testzip() is not None:
+                  raise SystemExit("ZIP integrity check failed")
+              for item in zf.infolist():
+                  target = (destination / item.filename).resolve()
+                  if not target.is_relative_to(destination.resolve()):
+                      raise SystemExit(f"Unsafe archive path: {item.filename}")
+              zf.extractall(destination)
+          PY
+
+      - name: Copy and commit source tree
         run: |
           rsync -a --exclude='agentops-for-securities-github-ready-v5.zip' "$RUNNER_TEMP/agentops-source/" ./
-
-      - name: Commit expanded source tree
-        shell: bash
-        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
